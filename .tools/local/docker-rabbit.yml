@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  rabbit:
+    image: rabbitmq:3.11-management
+    container_name: rabbit
+    ports:
+      - "5672:5672"
+    volumes:
+      - rabbit_data:/var/lib/rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - default
+volumes:
+  rabbit_data:
+    driver: local

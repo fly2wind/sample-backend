@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sample.infrastructure.persistence.mybatis.OrderMybatisMapper">
+    <select id="findBy" resultType="com.sample.infrastructure.persistence.dataobject.result.OrderResultDO">
+        SELECT * FROM t_orders
+        <trim suffixOverrides="and"  prefixOverrides="and">
+            <where>
+                <if test="username!=null">
+                    <bind name="pattern" value="'%' + username + '%'"/>
+                    and username LIKE #{pattern}
+                </if>
+            </where>
+        </trim>
+    </select>
+</mapper>
